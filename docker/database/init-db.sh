@@ -8,7 +8,7 @@ if [ -z "$ETHOS_REPL_DB_PASSWORD" ]; then
   exit 1
 fi
 
-psql -v ON_ERROR_STOP=1 --username postgres --set USERNAME=ethos --set PASSWORD=${ETHOS_REPL_DB_PASSWORD} <<-EOSQL
+psql ${DB_URL} -v ON_ERROR_STOP=1 --username postgres --set USERNAME=ethos --set PASSWORD=${ETHOS_REPL_DB_PASSWORD} <<-EOSQL
   CREATE USER :USERNAME WITH PASSWORD ':PASSWORD';
 
   CREATE DATABASE ethos
